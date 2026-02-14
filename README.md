@@ -1,36 +1,23 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Interview Scheduler (面談日程自動調整システム)
 
-## Getting Started
+教員と学生の面談日程調整を効率化するWebアプリケーションです。
+「教員の空き時間」と「学生の希望時間」をマッチングし、**独自の再帰探索アルゴリズム**を用いて最小の日数で全員の面談を完了させるスケジュールを自動生成します。
 
-First, run the development server:
+## 🚀 デモ (Demo)
+**[ここにVercelのURLを貼る]**
+(例: https://interview-scheduler-two.vercel.app/)
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## ✨ 特徴 (Key Features)
+- **アルゴリズムによる最適化**: 貪欲法(Greedy)だけでなく、**再帰探索(Backtracking)と枝刈り(Pruning)** を用いた独自ロジックを実装。局所解に陥らず、最適なスケジュールを導き出します。
+- **直感的な操作**: FullCalendarをカスタマイズし、ドラッグ＆ドロップでの直感的なスケジュール調整を実現。
+- **コンポーネント設計**: Reactのコンポーネント分割とCustom Hooks (`useSchedule`) による可読性の高いコード設計。
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🛠 使用技術 (Tech Stack)
+- **Frontend**: Next.js (App Router), React
+- **Language**: JavaScript
+- **Styling**: Tailwind CSS
+- **Library**: FullCalendar, Lucide React
+- **Environment**: WSL2 (Ubuntu), VS Code
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+---
+Created by Rin Ikeda

@@ -61,6 +61,18 @@ export default function ControlPanel() {
             onChange={(e) => setInterviewTime(e.target.value)}
           />
         </div>
+        {/* 最大面談件数設定 */}
+        <div className="flex flex-col gap-1">
+          <label className="text-xs font-bold text-gray-500">
+            最大面談件数
+          </label>
+          <input
+            type="number"
+            className="border border-gray-300 p-2 rounded w-24 bg-gray-50"
+            value={maxTimes}
+            onChange={(e) => setMaxTimes(e.target.value)}
+          />
+        </div>
 
         {/* 生徒追加フォーム */}
         <form onSubmit={handleAdd} className="flex flex-col gap-1">

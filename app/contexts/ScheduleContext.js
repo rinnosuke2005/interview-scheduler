@@ -97,7 +97,7 @@ export const ScheduleProvider = ({ children }) => {
       return;
     }
 
-    const result = optimizeAlg(allCandidates);
+    const result = optimizeAlg(allCandidates, maxTimes);
 
     if (result.length > 0) {
       if (confirm(`${result.length}件の候補が見つかりました！適用しますか？`)) {

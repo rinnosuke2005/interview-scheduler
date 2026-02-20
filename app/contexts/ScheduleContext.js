@@ -98,15 +98,26 @@ export const ScheduleProvider = ({ children }) => {
     }
 
     const result = optimizeAlg(allCandidates, maxTimes);
+    // ▼▼▼ 【NEW】結果の判定とメッセージ出し分け ▼▼▼
+    const matchedCount = result.length; // 組めた件数
+    const targetCount = studentEvents.length; // 元々の希望者の数
 
-    if (result.length > 0) {
-      if (confirm(`${result.length}件の候補が見つかりました！適用しますか？`)) {
+    if (matchedCount === 0) {
+      alert("条件に合う候補が1件も見つかりませんでした...");
+    } else if (matchedCount === targetCount) {
+      // 全員成功パターン
+      if (confirm(`完璧です！全員（${matchedCount}件）のスケジュールが組めました！適用しますか？`)) {
         setCalendarEvents(result);
         setIsExecuted(true);
       }
     } else {
-      alert("条件に合う候補が見つかりませんでした");
+      // 一部のみ成功（妥協）パターン
+      if (confirm(`全員は組めませんでしたが、${matchedCount}人 のスケジュールを最大化して組みました。\nこの状態で適用しますか？`)) {
+        setCalendarEvents(result);
+        setIsExecuted(true);
+      }
     }
+
   };
 
   // 3. 値をまとめて公開する

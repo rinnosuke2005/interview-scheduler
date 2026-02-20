@@ -97,7 +97,7 @@ export default function ControlPanel() {
           className={`font-bold py-2 px-8 rounded-lg shadow-lg transition text-white text-lg
             ${isExecuted ? "bg-amber-500 hover:bg-amber-600" : "bg-indigo-600 hover:bg-indigo-700"}`}
         >
-          {isExecuted ? "↩ 予定を戻す" : "マッチング実行 🚀"}
+          {isExecuted ? "↩ 予定を戻す" : "マッチング実行 "}
         </button>
       </div>
 
@@ -115,7 +115,7 @@ export default function ControlPanel() {
                 : "bg-white text-blue-600 border-blue-100 hover:bg-blue-50"
             }`}
         >
-          <span>👮‍♂️</span> {TEACHER.name}
+          <span></span> {TEACHER.name}
         </button>
 
         {students.map((student, index) => (

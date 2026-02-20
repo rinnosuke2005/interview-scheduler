@@ -70,7 +70,6 @@ export const generateSlots = (start, end, durationMinutes) => {
 // ★ 真・最適化アルゴリズム（修正版：1日に複数人を詰め込む）
 // 【NEW】引数に maxLimit を追加（デフォルト0＝無制限）
 export const optimizeAlg = (allCandidates, maxLimit = 0) => {
-  
   // 【NEW】制限用の変数を準備（0なら無制限として扱う）
   const dailyLimit = maxLimit > 0 ? maxLimit : 9999;
 
@@ -88,25 +87,34 @@ export const optimizeAlg = (allCandidates, maxLimit = 0) => {
   });
 
   // 日付リスト
-  const dateChoices = Object.values(dayGroups).sort((a, b) => b.length - a.length);
+  const dateChoices = Object.values(dayGroups).sort(
+    (a, b) => b.length - a.length,
+  );
 
   // === 探索関数 ===
   let bestSolution = null;
 
   const search = (currentEvents, coveredIds, index, daysUsedCount) => {
-    
-    // 【枝刈り】日数オーバーなら終了
-    if (bestSolution && daysUsedCount >= bestSolution.days) {
-      return;
+    // ▼▼▼ 【NEW】ベスト記録の更新ロジックを一番上に持ってくる ▼▼▼
+    // 「まだベストがない」 or 「今までより多くの人を救えた」 or 「人数は同じだけど日数が少ない」なら更新！
+    if (
+      !bestSolution ||
+      coveredIds.size > bestSolution.coveredCount ||
+      (coveredIds.size === bestSolution.coveredCount &&
+        daysUsedCount < bestSolution.days)
+    ) {
+      bestSolution = {
+        coveredCount: coveredIds.size,
+        days: daysUsedCount,
+        events: [...currentEvents],
+      };
     }
 
-    // 【ゴール達成】
+    // 【ゴール達成】全員カバーできたらこれ以上探す必要なし（大成功）
     if (coveredIds.size === totalStudentCount) {
-      if (!bestSolution || daysUsedCount < bestSolution.days) {
-        bestSolution = { days: daysUsedCount, events: [...currentEvents] };
-      }
       return;
     }
+    // ▲▲▲ 変更ここまで ▲▲▲
 
     // 【終了】
     if (index >= dateChoices.length) {
@@ -125,7 +133,7 @@ export const optimizeAlg = (allCandidates, maxLimit = 0) => {
       // ▼▼▼【NEW】ここに追加！上限チェック ▼▼▼
       // すでにこの日の上限数まで積んでいたら、もう追加せずループを抜ける
       if (pickedInThisDay.length >= dailyLimit) {
-        break; 
+        break;
       }
       // ▲▲▲ 追加ここまで ▲▲▲
 
@@ -152,10 +160,10 @@ export const optimizeAlg = (allCandidates, maxLimit = 0) => {
     // もしこの日で「誰か1人でも」新しく救えたなら、再帰を進める
     if (addedSomethingNew) {
       search(
-        [...currentEvents, ...pickedInThisDay], 
-        newCoveredIds, 
+        [...currentEvents, ...pickedInThisDay],
+        newCoveredIds,
         index + 1,
-        daysUsedCount + 1 
+        daysUsedCount + 1,
       );
     }
 

@@ -45,7 +45,7 @@ export default function ControlPanel() {
             onChange={(e) => setAlgorithm(e.target.value)}
           >
             <option value="minimizeDays">日数を最小化</option>
-            <option value="minimizeRest">休憩時間を最小化</option>
+            <option value="minimizeBreaks">休憩時間を最小化</option>
           </select>
         </div>
 

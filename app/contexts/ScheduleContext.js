@@ -97,7 +97,7 @@ export const ScheduleProvider = ({ children }) => {
       return;
     }
 
-    const result = optimizeAlg(allCandidates, maxTimes);
+    const result = optimizeAlg(allCandidates, maxTimes, algorithm);
     // ▼▼▼ 【NEW】結果の判定とメッセージ出し分け ▼▼▼
     const matchedCount = result.length; // 組めた件数
     const targetCount = studentEvents.length; // 元々の希望者の数

@@ -100,7 +100,8 @@ export const ScheduleProvider = ({ children }) => {
     const result = optimizeAlg(allCandidates, maxTimes, algorithm);
     // ▼▼▼ 【NEW】結果の判定とメッセージ出し分け ▼▼▼
     const matchedCount = result.length; // 組めた件数
-    const targetCount = studentEvents.length; // 元々の希望者の数
+    const uniqueStudentIds = new Set(studentEvents.map(e => e.resourceId));
+    const targetCount = uniqueStudentIds.size;
 
     if (matchedCount === 0) {
       alert("条件に合う候補が1件も見つかりませんでした...");

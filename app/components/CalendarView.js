@@ -80,11 +80,44 @@ export default function CalendarView() {
   };
 
   return (
-    <div className="flex-1 bg-white p-4 shadow-inner overflow-hidden">
+    <div className="flex-1 overflow-hidden bg-background p-4">
       <style jsx global>{`
+        .fc {
+          --fc-border-color: var(--border);
+          --fc-button-bg-color: var(--primary);
+          --fc-button-border-color: var(--primary);
+          --fc-button-hover-bg-color: color-mix(in oklch, var(--primary) 88%, white);
+          --fc-button-hover-border-color: var(--primary);
+          --fc-button-active-bg-color: color-mix(in oklch, var(--primary) 80%, black);
+          --fc-button-active-border-color: var(--primary);
+          --fc-today-bg-color: color-mix(in oklch, var(--accent) 35%, transparent);
+          --fc-page-bg-color: var(--card);
+          font-size: 0.875rem;
+        }
+        .fc .fc-toolbar-title {
+          font-size: 1.125rem;
+          font-weight: 600;
+          letter-spacing: -0.01em;
+        }
+        .fc .fc-button {
+          font-weight: 500;
+          text-transform: none;
+          border-radius: var(--radius-md);
+          box-shadow: none;
+          padding: 0.375rem 0.75rem;
+        }
+        .fc .fc-button:focus,
+        .fc .fc-button:focus-visible {
+          box-shadow: 0 0 0 3px color-mix(in oklch, var(--ring) 30%, transparent);
+        }
+        .fc-theme-standard td,
+        .fc-theme-standard th {
+          border-color: var(--border);
+        }
         .fc-timegrid-event {
-          margin-right: 12px !important; /* ここがクリック用の隙間になる */
-          box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1); /* ついでに影をつけて見やすく */
+          margin-right: 12px !important; /* クリック用の隙間 */
+          border-radius: var(--radius-sm);
+          box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
         }
       `}</style>
       <FullCalendar

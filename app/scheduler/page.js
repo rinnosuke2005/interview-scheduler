@@ -6,7 +6,7 @@ import CalendarView from "../components/CalendarView";
 export default function SchedulerPage() {
   return (
     <ScheduleProvider>
-      <div className="h-screen flex flex-col bg-slate-50 text-slate-900">
+      <div className="flex h-screen flex-col bg-secondary/30 text-foreground">
         {/* 上：操作パネル */}
         <ControlPanel />
 
